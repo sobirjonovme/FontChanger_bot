@@ -15,25 +15,24 @@ from utils.FontsChanger import fonts_number
 from data.Users import specific_font, all_fonts
 
 
-
-
-@dp.message_handler(text="📋 Shriftlar ro'yxati 📝")
+@dp.message_handler(text="📋 Fonts list 📝")
 async def menu_handler1(message: types.Message):
     txt = page_generator(1, 10)
 
     buttons = await generate_buttons(1,10)
     await message.answer(text=txt, reply_markup=buttons)
 
-@dp.message_handler(text="☑️ Barcha shriftlarni qo'llash ✅")
+
+@dp.message_handler(text="☑️ Apply all fonts ✅")
 async def menu_handler2(message: types.Message):
     all_fonts[message.from_user.id] = True
     
-    txt = "<b>Biror matn yuboring 🖋</b>"
+    txt = "<b>Send me some text 🖋</b>"
 
     await message.answer(text=txt)
 
 
-@dp.message_handler(text="🤖  Inline Mode haqida  📃")
+@dp.message_handler(text="🤖 About Inline Mode 📃")
 async def aboutInlineMode(message: types.Message):
     try:
         await dp.bot.forward_message(
@@ -53,7 +52,7 @@ async def bot_echo(message: types.Message):
     temp1 = all_fonts.get(user_id)
     temp2 = specific_font.get(user_id)
 
-    #admin uchun xabar
+    # admin uchun xabar
     xabar = f"<b>Name</b>:   {message.from_user.full_name}\n"
     xabar += f"<b>ID:</b>    {message.from_user.id}\n"
     xabar += f"<b>Username:</b>   @{message.from_user.username}\n\n"
@@ -63,7 +62,7 @@ async def bot_echo(message: types.Message):
             await message.answer(font_changer(message.text, i))
             await asyncio.sleep(0.05)
         
-        #adminga xabar beramiz
+        # adminga xabar beramiz
         try:
             xabar += message.text
             await dp.bot.send_message(text=xabar, chat_id=1039835085)
@@ -73,7 +72,7 @@ async def bot_echo(message: types.Message):
     elif temp2:
         await message.answer(font_changer(message.text, temp2))
 
-        #adminga xabar beramiz
+        # adminga xabar beramiz
         try:
             xabar += font_changer(message.text, temp2)
             await dp.bot.send_message(text=xabar, chat_id=1039835085)
@@ -81,10 +80,10 @@ async def bot_echo(message: types.Message):
             print("Adminga xabar berishda xatolik")
     
     else:
-        txt = "<i>Iltimos,</i> <b>📋 Shriftlar ro'yxati 📝 </b>"
-        txt += "<i>bo'limi orqali biror shriftni tanlang,</i>"
-        txt += "<i> yoki birdaniga barcha shriftlardan foydalanish uchun</i>"
-        txt +=  " <b>✔️ Barcha shriftlarni qo'llash ☑️</b><i> tugmasini bosing</i>"
+
+        txt = "<i>Please, select a font from the</i> <b>📋 Fonts list 📝 </b> <i>section, \
+        \nor click</i> <b>☑️ Apply all fonts ✅</b><i> button to use all fonts at once</i>"
+
         await message.answer(text=txt, reply_markup=menu_button)
 
     

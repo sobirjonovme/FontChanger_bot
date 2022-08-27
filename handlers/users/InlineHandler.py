@@ -22,7 +22,7 @@ async def ForwardHandler(call: types.CallbackQuery, callback_data: dict):
         end = fonts_number-1
 
     if start > fonts_number-1:
-        await call.answer(text="Siz allaqachon so'ggi sahifadasiz", cache_time=60)
+        await call.answer(text="You are already on the last page", cache_time=60)
     else:
         txt = page_generator(start, end)
         buttons = await generate_buttons(start, end)
@@ -40,13 +40,12 @@ async def ForwardHandler(call: types.CallbackQuery, callback_data: dict):
     # print(f"start = {start} \n end={end}\n")
 
     if start < 1:
-        await call.answer(text="Siz allaqachon birinchi sahifadasiz", cache_time=60)
+        await call.answer(text="You are already on the first page", cache_time=60)
     else:
         txt = page_generator(start, end)
         buttons = await generate_buttons(start, end)
         await call.message.edit_text(text=txt, reply_markup=buttons)
     await call.answer()
-
 
 
 @dp.callback_query_handler(font_index.filter())
@@ -56,7 +55,7 @@ async def IndexHandler(call: types.CallbackQuery, callback_data: dict):
     specific_font[call.from_user.id] = n
     all_fonts[call.from_user.id] = False
 
-    txt = "<b>Biror matn yuboring 🖋</b>"
+    txt = "<b>Send me some text 🖋</b>"
     await call.message.answer(text=txt)
     await call.answer()
 

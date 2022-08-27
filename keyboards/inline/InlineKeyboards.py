@@ -6,7 +6,7 @@ from keyboards.inline.callback_data import font_index, forward_page, back_page
 
 async def generate_buttons(start, end):
     buttons = []
-    if end-start>4:
+    if end-start > 4:
         buttons += [[], []] 
         for i in range(start, start+5):
             buttons[0].append(

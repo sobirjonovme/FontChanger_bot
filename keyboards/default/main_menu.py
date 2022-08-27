@@ -5,15 +5,15 @@ menu_button = types.ReplyKeyboardMarkup(
     keyboard=[
         [
             types.KeyboardButton(
-                text="📋 Shriftlar ro'yxati 📝"
+                text="📋 Fonts list 📝"
             ),
             types.KeyboardButton(
-                text="☑️ Barcha shriftlarni qo'llash ✅"
+                text="☑️ Apply all fonts ✅"
             ),
         ],
         [
             types.KeyboardButton(
-                text="🤖  Inline Mode haqida  📃"
+                text="🤖 About Inline Mode 📃"
             ),
         ],
     ],

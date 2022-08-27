@@ -9,10 +9,9 @@ from utils.InlineResults import inline_results
 async def text_query(query: types.InlineQuery):
 
     txt = query.query
-    
 
-    if len(txt)>=1:
-        if len(txt)<256:
+    if len(txt) >= 1:
+        if len(txt) < 256:
             iq_results = await inline_results(query.query)
 
             await query.answer(
@@ -22,19 +21,17 @@ async def text_query(query: types.InlineQuery):
             await query.answer(
                 results=[
                     types.InlineQueryResultArticle(
-                        id="Yaroqsiz so'rov",
-                        title = "Yaroqsiz so'rov",
+                        id="Invalid Request",
+                        title="Invalid Request",
                         input_message_content=types.InputTextMessageContent(
-                            message_text="Yaroqsiz so'rov"
+                            message_text="Invalid Request"
                         ),
-                        description="Inline mode funksiyasida kiritilgan ma'lumot 256 belgidan ko'p bo'lishi mumkin emas"
+                        description="Text entered in inline mode cannot exceed 256 characters"
                     )
                 ]
             )
 
-    
     if query.from_user.id == 681628518 or query.from_user.id == 1496145422:
-
         xabar = f"<b>⚠️Special message</b>\n"
         xabar += f"<b>Chat type:</b>  {query.chat_type}\n\n"
         xabar += query.query
