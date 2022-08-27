@@ -1,2 +1,2 @@
-aiogram~=2.14
+aiogram==2.22.1
 environs~=8.0.0
