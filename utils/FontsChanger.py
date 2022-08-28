@@ -158,7 +158,7 @@ def font_changer(matn, n):
 
 # Page generater
 def page_generator(start, end):
-    matn = "Misol uchun matn"
+    matn = "Some example text"
     
     matnchalar = []
     fonts = []
