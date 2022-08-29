@@ -15,11 +15,12 @@ from utils.FontsChanger import fonts_number
 from data.Users import specific_font, all_fonts
 
 
+
 @dp.message_handler(text="📋 Fonts list 📝")
 async def menu_handler1(message: types.Message):
     txt = page_generator(1, 10)
 
-    buttons = await generate_buttons(1,10)
+    buttons = await generate_buttons(1, 10)
     await message.answer(text=txt, reply_markup=buttons)
 
 
@@ -47,6 +48,13 @@ async def aboutInlineMode(message: types.Message):
 # Echo bot
 @dp.message_handler()
 async def bot_echo(message: types.Message):
+    txt = "<i>Please, select a font from the</i> <b>📋 Fonts list 📝 </b> <i>section, \
+            \nor click</i> <b>☑️ Apply all fonts ✅</b><i> button to use all fonts at once</i>"
+
+    if message.text in ["📋 Shriftlar ro'yxati 📝", "☑️ Barcha shriftlarni qo'llash ✅", "🤖  Inline Mode haqida  📃"]:
+        await message.answer(text=txt, reply_markup=menu_button)
+        return
+
     user_id = message.from_user.id
 
     temp1 = all_fonts.get(user_id)
