@@ -16,5 +16,8 @@ def create_bot_user(user):
         'last_name': user.last_name,
     }
 
-    res = requests.post(url, headers=head, json=body)
-    print(res.text)
+    try:
+        res = requests.post(url, headers=head, json=body)
+        # print(res.text)
+    except Exception as e:
+        print(e)
