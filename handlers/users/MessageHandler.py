@@ -13,7 +13,7 @@ from keyboards.inline.InlineKeyboards import generate_buttons
 from keyboards.default.main_menu import menu_button
 from utils.FontsChanger import fonts_number
 from data.Users import specific_font, all_fonts
-
+from utils.db_api.bot_users import create_bot_user
 
 
 @dp.message_handler(text="📋 Fonts list 📝")
@@ -48,12 +48,9 @@ async def aboutInlineMode(message: types.Message):
 # Echo bot
 @dp.message_handler()
 async def bot_echo(message: types.Message):
-    txt = "<i>Please, select a font from the</i> <b>📋 Fonts list 📝 </b> <i>section, \
-            \nor click</i> <b>☑️ Apply all fonts ✅</b><i> button to use all fonts at once</i>"
 
-    if message.text in ["📋 Shriftlar ro'yxati 📝", "☑️ Barcha shriftlarni qo'llash ✅", "🤖  Inline Mode haqida  📃"]:
-        await message.answer(text=txt, reply_markup=menu_button)
-        return
+    # User'ni database'ga saqlaymiz
+    create_bot_user(message.from_user)
 
     user_id = message.from_user.id
 
@@ -61,11 +58,12 @@ async def bot_echo(message: types.Message):
     temp2 = specific_font.get(user_id)
 
     # admin uchun xabar
-    xabar = f"<b>Name</b>:   {message.from_user.full_name}\n"
+    xabar = f"#U{message.from_user.id}\n\n"
+    xabar += f"<b>Name</b>:   {message.from_user.full_name}\n"
     xabar += f"<b>ID:</b>    {message.from_user.id}\n"
     xabar += f"<b>Username:</b>   @{message.from_user.username}\n\n"
 
-    if temp1 == True:
+    if temp1 is True:
         for i in range(fonts_number):
             await message.answer(font_changer(message.text, i))
             await asyncio.sleep(0.05)
@@ -74,7 +72,7 @@ async def bot_echo(message: types.Message):
         try:
             xabar += message.text
             await dp.bot.send_message(text=xabar, chat_id=1039835085)
-        except:
+        except Exception as e:
             print("Adminga xabar berishda xatolik")
     
     elif temp2:
@@ -88,7 +86,6 @@ async def bot_echo(message: types.Message):
             print("Adminga xabar berishda xatolik")
     
     else:
-
         txt = "<i>Please, select a font from the</i> <b>📋 Fonts list 📝 </b> <i>section, \
         \nor click</i> <b>☑️ Apply all fonts ✅</b><i> button to use all fonts at once</i>"
 

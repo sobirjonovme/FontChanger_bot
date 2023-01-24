@@ -4,6 +4,7 @@ from aiogram.dispatcher.filters.builtin import CommandStart
 from loader import dp
 
 from keyboards.default.main_menu import menu_button
+from utils.db_api.bot_users import create_bot_user
 
 
 @dp.message_handler(CommandStart())
@@ -16,3 +17,5 @@ async def bot_start(message: types.Message):
         \nor click</i> <b>☑️ Apply all fonts ✅</b><i> button to use all fonts at once</i>"
     await message.answer(text=txt2, reply_markup=menu_button)
 
+    # User'ni database'ga saqlaymiz
+    create_bot_user(message.from_user)
