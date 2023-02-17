@@ -13,13 +13,4 @@ To run the bot on your local machine, follow these steps:
 3. Install the required dependencies using `pip install -r requirements.txt`
 4. Run the `app.py` file using Python 3.
 
-```bash
-git clone https://github.com/sobirjonovme/FontChanger_bot.git
-cd FontChanger_bot
-cp .env.dist .env
-# Edit the .env file with your own values
-pip install -r requirements.txt
-python app.py
-```
-
-Once the bot is running, you can interact with it on Telegram.
+##### Once the bot is running, you can interact with it on Telegram.
