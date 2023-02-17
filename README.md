@@ -2,7 +2,7 @@
 
 This is the full code for a Telegram bot that helps people change their texts into beautiful fonts without leaving the Telegram app. The bot was written in Python using the aiogram framework.
 
-The bot provides a simple way for Telegram users to apply different fonts to their text messages. It supports a wide range of font styles, including bold, dark bubbles, semibold, squares, sky blue, serif, fraktur and many more. Users can choose the font style they want. The bot will respond with the same message, but with the requested font style applied.
+The bot provides a simple way for Telegram users to apply different fonts to their text messages. It supports a wide range of font styles, including <b><i>`bold, dark bubbles, semibold, squares, sky blue, serif, fraktur`</i></b> and many more. Users can choose the font style they want. The bot will respond with the same message, but with the requested font style applied.
 
 ## How to run the bot locally
 
